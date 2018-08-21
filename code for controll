@@ -1,0 +1,304 @@
+import sys
+import time
+import RPi.GPIO as GPIO
+from Raspi_MotorHAT import Raspi_MotorHAT, Raspi_StepperMotor 
+import atexit
+import pygame
+
+# setup
+
+GPIO.setmode(GPIO.BCM)
+# 25/26 PWM drive speed
+GPIO.setup(25, GPIO.OUT) 
+GPIO.setup(26, GPIO.OUT)
+# ???
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+
+speed = 0
+p=GPIO.PWM(25,1000)
+p=GPIO.PWM(26,1000)
+
+
+
+
+
+
+
+
+def forward():
+   GPIO.setup(17, True)
+   GPIO.setup(22, False)
+   GPIO.setup(23, True)
+   GPIO.setup(24, False)
+
+def reverse():
+   GPIO.setup(17, False)
+   GPIO.setup(22, True)
+   GPIO.setup(23, False)
+   GPIO.setup(24, True)
+
+def right():
+   GPIO.setup(17, False)
+   GPIO.setup(22, True)
+   GPIO.setup(23, True)
+   GPIO.setup(24, False)
+
+def left():
+   GPIO.setup(17, True)
+   GPIO.setup(22, False)
+   GPIO.setup(23, False)
+   GPIO.setup(24, True)
+
+def stop():
+   GPIO.setup(17, False)
+   GPIO.setup(22, False)
+   GPIO.setup(23, False)
+   GPIO.setup(24, False)
+
+p.ChangeDutyCycle(speed)
+
+
+
+done=False
+
+# Initialize the joysticks
+pygame.joystick.init()
+
+# -------- Main Program Loop -----------
+while done == False:
+    joystick = pygame.joystick.Joystick(0)
+    joystick.init()
+
+    button = joystick.get_button(0)
+    if button == True:
+       stop()
+
+    button = joystick.get_button(1)
+    if button  == True:
+       print('no')
+
+    button = joystick.get_button(2)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(3)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(4)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(5)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(6)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(7)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(9)
+
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(11)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(12)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(13)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(14)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(15)
+    if button == True:
+       print('no')
+
+    button = joystick.get_button(16)
+    if button == True:
+       print('no')
+
+    axis = joystick.get_axis(0)
+    if axis == 0:
+       print('no')
+
+    elif axis >= 0.50:
+       print('no')
+
+    elif axis <= -0.50:
+       print('no')
+    axislr = joystick.get_axis(3)
+    if axislr >= 0.90:
+       speed = 100
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= 0.80:
+       speed = 90
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= 0.70:
+       speed = 80
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= 0.60:
+       speed = 70
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= 0.50:
+       speed = 60
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= 0.40:
+       speed = 50
+       p.ChangeDutyCycle(speed)
+       right()
+
+    elif axislr >= -0.50:
+       speed = 50
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axislr >= -0.60:
+       speed = 60
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axislr >= -0.70:
+       speed = 70
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axislr >= -0.80:
+       speed = 80
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axislr >= -0.90:
+       speed = 90
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axislr >= -1.00:
+       speed = 100
+       p.ChangeDutyCycle(speed)
+       left()
+    axisfb = joystick.get_axis(4)
+    if axisfb >= 0.90:
+       speed = 100
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.80:
+       speed = 90
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.70:
+       speed = 80
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.60:
+       speed = 70
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.50:
+       speed = 60
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.40:
+       speed = 50
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.30:
+       speed = 40
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.20:
+       speed = 30
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.10:
+       speed = 20
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= 0.00:
+       speed = 10
+       p.ChangeDutyCycle(speed)
+       forward()
+
+    elif axisfb >= -0.10:
+       speed = 10
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.20:
+       speed = 20
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.30:
+       speed = 30
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.40:
+       speed = 40
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.50:
+       speed = 50
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.60:
+       speed = 60
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.70:
+       speed = 70
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.80:
+       speed = 80ccc
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -0.90:
+       speed = 90
+       p.ChangeDutyCycle(speed)
+       reverse()
+
+    elif axisfb >= -1.00:
+       speed = 100
+       p.ChangeDutyCycle(speed)
+       reverse()
