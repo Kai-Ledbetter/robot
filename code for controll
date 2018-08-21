@@ -11,7 +11,7 @@ GPIO.setmode(GPIO.BCM)
 # 25/26 PWM drive speed
 GPIO.setup(25, GPIO.OUT) 
 GPIO.setup(26, GPIO.OUT)
-# ???
+# setup for gpios
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
 GPIO.setup(23, GPIO.OUT)
@@ -142,7 +142,10 @@ while done == False:
 
     elif axis <= -0.50:
        print('no')
+
+    #right/left
     axislr = joystick.get_axis(3)
+    #right
     if axislr >= 0.90:
        speed = 100
        p.ChangeDutyCycle(speed)
@@ -173,132 +176,137 @@ while done == False:
        p.ChangeDutyCycle(speed)
        right()
 
+    #left
     elif axislr >= -0.50:
        speed = 50
        p.ChangeDutyCycle(speed)
-       reverse()
+       left()
 
     elif axislr >= -0.60:
        speed = 60
        p.ChangeDutyCycle(speed)
-       reverse()
+       left()
 
     elif axislr >= -0.70:
        speed = 70
        p.ChangeDutyCycle(speed)
-       reverse()
+       left()
 
     elif axislr >= -0.80:
        speed = 80
        p.ChangeDutyCycle(speed)
-       reverse()
+       left()
 
     elif axislr >= -0.90:
        speed = 90
        p.ChangeDutyCycle(speed)
-       reverse()
+       left()
 
     elif axislr >= -1.00:
        speed = 100
        p.ChangeDutyCycle(speed)
        left()
+
+    #forward/reverse
     axisfb = joystick.get_axis(4)
+    #reverse
     if axisfb >= 0.90:
        speed = 100
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.80:
        speed = 90
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.70:
        speed = 80
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.60:
        speed = 70
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.50:
        speed = 60
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.40:
        speed = 50
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.30:
        speed = 40
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.20:
        speed = 30
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.10:
        speed = 20
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
     elif axisfb >= 0.00:
        speed = 10
        p.ChangeDutyCycle(speed)
-       forward()
+       reverse()
 
+    #forward
     elif axisfb >= -0.10:
        speed = 10
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.20:
        speed = 20
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.30:
        speed = 30
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.40:
        speed = 40
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.50:
        speed = 50
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.60:
        speed = 60
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.70:
        speed = 70
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.80:
        speed = 80ccc
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -0.90:
        speed = 90
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
 
     elif axisfb >= -1.00:
        speed = 100
        p.ChangeDutyCycle(speed)
-       reverse()
+       forward()
